@@ -4,7 +4,7 @@
 # base system
 ################################################################################
 
-FROM ubuntu:20.04 as system
+FROM ubuntu:22.04 as system
 
 
 
@@ -42,7 +42,7 @@ RUN apt update \
 
 RUN apt update \
     && apt install -y --no-install-recommends --allow-unauthenticated \
-        lxde gtk2-engines-murrine gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine arc-theme \
+        xfce4 xfce4-goodies xfce4-terminal \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
@@ -82,7 +82,7 @@ RUN apt-get update \
 ################################################################################
 # builder
 ################################################################################
-FROM ubuntu:20.04 as builder
+FROM ubuntu:22.04 as builder
 
 
 RUN sed -i 's#http://archive.ubuntu.com/ubuntu/#mirror://mirrors.ubuntu.com/mirrors.txt#' /etc/apt/sources.list;
