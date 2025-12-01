@@ -26,6 +26,15 @@ RUN apt update \
     && rm google-chrome-stable_current_amd64.deb \
     && rm -rf /var/lib/apt/lists/*
 
+# install debs error if combine together
+RUN apt update \
+    && apt install -y --no-install-recommends --allow-unauthenticated \
+    xvfb x11vnc \
+    vim-tiny firefox fonts-ubuntu ttf-wqy-zenhei  \
+    && apt autoclean -y \
+    && apt autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN apt update \
     && apt install -y --no-install-recommends --allow-unauthenticated \
     xfce4 xfce4-goodies xfce4-terminal \
